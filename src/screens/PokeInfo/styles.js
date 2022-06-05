@@ -1,8 +1,15 @@
 import styled from 'styled-components/native';
+import {MotiView, MotiImage, useAnimationState} from 'moti';
+
 import {StatusBar} from 'react-native';
 
 const Scroll = styled.ScrollView`
-  background-color: #65c7b1;
+  background-color: ${({color}) => color ?? rgba(0, 0, 0)};
+`;
+
+const BackPress = styled.Pressable`
+  width: 60px;
+  height: 20px;
 `;
 
 const HeaderTitle = styled.Text`
@@ -17,8 +24,8 @@ const HeaderText = styled.Text`
   text-align: center;
 `;
 
-const HeaderView = styled.View`
-  height: 255px;
+const HeaderView = styled(MotiView)`
+  height: 305px;
   padding: ${StatusBar.currentHeight}px 20px;
 `;
 
@@ -26,13 +33,13 @@ const Row = styled.View`
   flex-direction: row;
   justify-content: ${({justifyContent}) => justifyContent ?? 'flex-start'};
   margin-bottom: ${({marginBottom}) => marginBottom ?? 0}px;
+  left: ${({LeftMove}) => LeftMove ?? 0}px;
 `;
 
 const StyledIcon = styled.Image`
   width: ${({width}) => width ?? 10}px;
-  height: 20px;
+  height: ${({height}) => height ?? 20}px;
 `;
-
 const Tag = styled.View`
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 20px;
@@ -43,13 +50,14 @@ const Tag = styled.View`
 const HeaderImage = styled.Image`
   width: 200px;
   height: 200px;
-  top: 94px;
+  right: 90px;
+  top: 144px;
   align-self: center;
   z-index: 1;
   position: absolute;
 `;
 
-const InfoView = styled.View`
+const InfoView = styled(MotiView)`
   background-color: white;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -92,18 +100,7 @@ const StatsDirection = styled.View`
   flex-direction: column;
   align-items: center;
 `;
-const DivisionBar = styled.Image`
-  width: 3px;
-  height: 60px;
-`;
-const WeightIcon = styled.Image`
-  width: 16px;
-  height: 16px;
-`;
-const HeightIcon = styled.Image`
-  width: 8px;
-  height: 16px;
-`;
+
 const BlockStatsView = styled.View`
   flex-direction: row;
   align-items: center;
@@ -116,23 +113,33 @@ const CaracterView = styled.View`
   text-align: center;
   margin-right: 20px;
 `;
-const CaracterIcon = styled.Image`
-  width: 17px;
-  height: 17px;
-`;
+
 const CaracterText = styled.Text`
   font-size: 16px;
-  margin: 4px 0px 4px 0px;
   text-align: justify;
+  margin-right: ${({marginRight}) => marginRight ?? 0}px;
+  margin-left: ${({marginLeft}) => marginLeft ?? 0}px;
 `;
 const CaracterBar = styled.Image`
   background-color: black;
-  margin-left: 30px;
   height: 4px;
+  margin-top: 10px;
 `;
-//HorizontalBar
+const ColorBar = styled.View`
+  background-color: ${({ColorTest}) => ColorTest ?? 'rgba(25,200,25)'};
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 154px;
+  height: 3px;
+  width: ${({SizeTest}) => SizeTest * 2 ?? 0}px;
+`;
+//width: ${({SizeTest}) => SizeTest}px;
+//width: ${({SizeTest}) => SizeTest * 3 ?? 10}px;
+//background-color: ${({ColorBar}) => ColorBar ?? rgba(0, 0, 0)};
+
 export default {
   Scroll,
+  BackPress,
   StyledIcon,
   HeaderTitle,
   HeaderText,
@@ -147,13 +154,10 @@ export default {
   StatsValue,
   StatsView,
   StatsDirection,
-  DivisionBar,
-  WeightIcon,
-  HeightIcon,
   BlockStatsView,
   CaracterTitle,
   CaracterView,
   CaracterText,
-  CaracterIcon,
   CaracterBar,
+  ColorBar,
 };

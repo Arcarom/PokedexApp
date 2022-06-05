@@ -1,14 +1,16 @@
+/* eslint-disable no-undef */
 import styled from 'styled-components/native';
 
 const Container = styled.Pressable`
-  width: 49%;
-  height: 150px;
-  background-color: rgba(148, 188, 74, 1);
+  width: 45%;
+  height: 125px;
+  background-color: ${({color}) => color ?? '#000'};
   border-radius: 15px;
-  padding: 25px 15px;
+  padding: 18px 15px;
   flex-direction: row;
   justify-content: space-between;
-  left: 20px;
+  left: 7px;
+  margin: 7px;
 `;
 
 const CardTitle = styled.Text`

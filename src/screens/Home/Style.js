@@ -8,7 +8,7 @@ export const Container = styled.FlatList`
 export const HeaderContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  padding: ${StatusBar.currentHeight}px 20px 40px;
+  padding: ${StatusBar.currentHeight}px 20px 20px;
   width: 100%;
   align-items: flex-end;
   background-color: #494949;
@@ -29,8 +29,8 @@ export const BoldText = styled.Text`
 export const SectionTitle = styled.Text`
   font-size: 30px;
   font-weight: bold;
-  width: 90%;
-  margin: 30px;
+  width: 80%;
+  margin: 20px;
 `;
 export const Pokeball = styled.Image`
   width: 170px;
@@ -49,4 +49,5 @@ export const ImagePerfil = styled.Image`
 `;
 export const Image = styled.Image`
   align-self: center;
+  margin-top: 20px;
 `;

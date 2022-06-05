@@ -1,22 +1,27 @@
 import React from 'react';
+import {View} from 'react-native';
 import Styled from './styles';
+import formatPokemonNumber from '../../utils/formatPokemonNumber';
 
-const PokemonCard = ({onPress}) => {
+const PokemonCard = ({id, onPress, name, types, sprite, color}) => {
   return (
-    <Styled.Container onPress={onPress}>
-      <Styled.PokemonNumber>#001</Styled.PokemonNumber>
+    <Styled.Container onPress={onPress} color={color}>
+      <Styled.PokemonNumber>{formatPokemonNumber(id)}</Styled.PokemonNumber>
       <Styled.PokemonData>
-        <Styled.CardTitle>Bulbasaur</Styled.CardTitle>
-        <Styled.CardTagContainer>
-          <Styled.CardText>Planta</Styled.CardText>
-        </Styled.CardTagContainer>
-        <Styled.CardTagContainer>
-          <Styled.CardText>Venenoso</Styled.CardText>
-        </Styled.CardTagContainer>
+        <Styled.CardTitle>{name}</Styled.CardTitle>
+        {types.map((item, index) => {
+          return (
+            <View key={index}>
+              <Styled.CardTagContainer>
+                <Styled.CardText>{item.type.name}</Styled.CardText>
+              </Styled.CardTagContainer>
+            </View>
+          );
+        })}
       </Styled.PokemonData>
       <Styled.Sprite
         source={{
-          uri: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
+          uri: sprite,
         }}
       />
     </Styled.Container>
