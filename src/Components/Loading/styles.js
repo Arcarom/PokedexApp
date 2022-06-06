@@ -1,12 +1,12 @@
 import styled from 'styled-components/native';
-import {MotiView, MotiImage, useAnimationState} from 'moti';
-import {StatusBar} from 'react-native';
+import {MotiView, MotiImage} from 'moti';
 
 const TextLoading = styled.Text`
   font-size: 25px;
   font-weight: bold;
 `;
 const Container = styled(MotiView)`
+  background-color: '#fffffffff';
   justify-content: space-between;
   align-items: center;
   flex: 1;

@@ -15,6 +15,7 @@ import LoadingScreen from '../../components/Loading';
 import PokemonCard from '../../components/pokemonCard';
 import api from '../../utils/api';
 import colors from '../../utils/colors';
+import formatPokemonName from '../../utils/formatPokemonName';
 
 const HomeApp = ({navigation}) => {
   const [loading, setLoading] = useState(false);
@@ -24,7 +25,6 @@ const HomeApp = ({navigation}) => {
     setLoading(true);
     try {
       const {data} = await api.get('pokemon?limit=8&offset=0');
-
       const pokemons = [];
 
       data.results.map(async item => {
@@ -90,7 +90,7 @@ const HomeApp = ({navigation}) => {
                 navigation.navigate('PokeInfo', {id: item.id});
               }}
               id={item.id}
-              name={item.name}
+              name={formatPokemonName(item.name)}
               types={item.types}
               sprite={item.sprite}
               color={item.color}

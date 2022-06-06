@@ -5,6 +5,7 @@ import api from '../../utils/api';
 import colors from '../../utils/colors';
 import formatPokemonNumber from '../../utils/formatPokemonNumber';
 import Tag from '../../components/Tag';
+import formatPokemonName from '../../utils/formatPokemonName';
 
 const PokeInfo = ({route, navigation}) => {
   const [loading, setLoading] = useState(true);
@@ -118,14 +119,22 @@ const PokeInfo = ({route, navigation}) => {
           />
         </Styled.Row>
         <Styled.Row justifyContent="space-between" marginBottom={8}>
-          <Styled.HeaderTitle>{pokemon.name}</Styled.HeaderTitle>
+          <Styled.HeaderTitle>
+            {formatPokemonName(pokemon.name)}
+          </Styled.HeaderTitle>
           <Styled.HeaderTitle>
             {formatPokemonNumber(route.params.id)}
           </Styled.HeaderTitle>
         </Styled.Row>
         <Styled.Row>
-          {pokemon.types.map(item => {
-            return <Tag key={item.slot} label={item.type.name} />;
+          {pokemon.types.map((item, index) => {
+            return (
+              <Tag
+                isFirstChild={index === 0}
+                key={item.slot}
+                label={item.type.name}
+              />
+            );
           })}
         </Styled.Row>
       </Styled.HeaderView>
@@ -192,9 +201,9 @@ const PokeInfo = ({route, navigation}) => {
 
         <Styled.CaracterTitle>Characteristics</Styled.CaracterTitle>
 
-        <Styled.Row justifyContent="space-between" marginBottom={10}>
+        <Styled.Row marginBottom={10}>
           <Styled.CaracterText>Gender</Styled.CaracterText>
-          <Styled.Row LeftMove={-100} justifyContent="space-between">
+          <Styled.Row>
             <Styled.StyledIcon
               width={17}
               height={17}
@@ -204,7 +213,11 @@ const PokeInfo = ({route, navigation}) => {
               {' '}
               {PokeGender(pokemon.gender)[0]}
             </Styled.StatsValue>
-            <Styled.StyledIcon source={require('../../Assets/F.png')} />
+
+            <Styled.StyledIcon
+              marginLeft={10}
+              source={require('../../Assets/F.png')}
+            />
             <Styled.StatsValue>
               {' '}
               {PokeGender(pokemon.gender)[1]}
@@ -212,26 +225,26 @@ const PokeInfo = ({route, navigation}) => {
           </Styled.Row>
         </Styled.Row>
 
-        <Styled.Row justifyContent="space-between" marginBottom={10}>
+        <Styled.Row marginBottom={10}>
           <Styled.CaracterText>Health</Styled.CaracterText>
           <Styled.CaracterText marginLeft={27}>
             {pokemon.hp}
           </Styled.CaracterText>
-          <Styled.CaracterBar
-            source={require('../../Assets/HorizontalBar.png')}
-          />
-          <Styled.ColorBar
-            ColorTest={
-              pokemon.hp >= 50
-                ? 'rgba(75, 192, 122, 1)'
-                : pokemon.hp >= 30
-                ? '#ffbe47'
-                : pokemon.hp >= 0
-                ? 'rgba(251, 108, 108, 1)'
-                : 0
-            }
-            SizeTest={pokemon.hp / 2}
-          />
+          <Styled.Row width={'70%'}>
+            <Styled.ColorBar
+              ColorTest={
+                pokemon.hp >= 50
+                  ? 'rgba(75, 192, 122, 1)'
+                  : pokemon.hp >= 30
+                  ? '#ffbe47'
+                  : pokemon.hp >= 0
+                  ? 'rgba(251, 108, 108, 1)'
+                  : 0
+              }
+              SizeTest={pokemon.hp / 2}
+            />
+            <Styled.CaracterBar />
+          </Styled.Row>
         </Styled.Row>
 
         <Styled.Row justifyContent="space-between" marginBottom={10}>
@@ -239,9 +252,6 @@ const PokeInfo = ({route, navigation}) => {
           <Styled.CaracterText marginLeft={27}>
             {pokemon.attack}
           </Styled.CaracterText>
-          <Styled.CaracterBar
-            source={require('../../Assets/HorizontalBar.png')}
-          />
           <Styled.ColorBar
             ColorTest={
               pokemon.attack >= 50
@@ -254,6 +264,7 @@ const PokeInfo = ({route, navigation}) => {
             }
             SizeTest={pokemon.attack / 2}
           />
+          <Styled.CaracterBar />
         </Styled.Row>
 
         <Styled.Row justifyContent="space-between" marginBottom={10}>
@@ -261,9 +272,6 @@ const PokeInfo = ({route, navigation}) => {
           <Styled.CaracterText marginLeft={12}>
             {pokemon.defense}
           </Styled.CaracterText>
-          <Styled.CaracterBar
-            source={require('../../Assets/HorizontalBar.png')}
-          />
           <Styled.ColorBar
             ColorTest={
               pokemon.defense >= 50
@@ -276,6 +284,7 @@ const PokeInfo = ({route, navigation}) => {
             }
             SizeTest={pokemon.defense / 2}
           />
+          <Styled.CaracterBar />
         </Styled.Row>
 
         <Styled.Row justifyContent="space-between" marginBottom={10}>
@@ -283,9 +292,6 @@ const PokeInfo = ({route, navigation}) => {
           <Styled.CaracterText marginRight={0}>
             {pokemon.special_attack}
           </Styled.CaracterText>
-          <Styled.CaracterBar
-            source={require('../../Assets/HorizontalBar.png')}
-          />
           <Styled.ColorBar
             ColorTest={
               pokemon.special_attack >= 50
@@ -298,6 +304,7 @@ const PokeInfo = ({route, navigation}) => {
             }
             SizeTest={pokemon.special_attack / 2}
           />
+          <Styled.CaracterBar />
         </Styled.Row>
 
         <Styled.Row justifyContent="space-between" marginBottom={10}>
@@ -305,9 +312,7 @@ const PokeInfo = ({route, navigation}) => {
           <Styled.CaracterText marginRight={14}>
             {pokemon.special_defense}
           </Styled.CaracterText>
-          <Styled.CaracterBar
-            source={require('../../Assets/HorizontalBar.png')}
-          />
+
           <Styled.ColorBar
             ColorTest={
               pokemon.special_defense >= 50
@@ -320,6 +325,7 @@ const PokeInfo = ({route, navigation}) => {
             }
             SizeTest={pokemon.special_defense / 2}
           />
+          <Styled.CaracterBar />
         </Styled.Row>
 
         <Styled.Row justifyContent="space-between" marginBottom={10}>
@@ -327,9 +333,7 @@ const PokeInfo = ({route, navigation}) => {
           <Styled.CaracterText marginLeft={20}>
             {pokemon.speed}
           </Styled.CaracterText>
-          <Styled.CaracterBar
-            source={require('../../Assets/HorizontalBar.png')}
-          />
+
           <Styled.ColorBar
             ColorTest={
               pokemon.speed >= 50
@@ -342,14 +346,13 @@ const PokeInfo = ({route, navigation}) => {
             }
             SizeTest={pokemon.speed / 2}
           />
+          <Styled.CaracterBar />
         </Styled.Row>
 
-        <Styled.Row justifyContent="space-between" marginBottom={10}>
+        <Styled.Row justifyContent="space-between" marginBottom={20}>
           <Styled.CaracterText>Total</Styled.CaracterText>
           <Styled.CaracterText marginLeft={30}>{total}</Styled.CaracterText>
-          <Styled.CaracterBar
-            source={require('../../Assets/HorizontalBar.png')}
-          />
+
           <Styled.ColorBar
             ColorTest={
               total / 2 >= 200
@@ -362,6 +365,7 @@ const PokeInfo = ({route, navigation}) => {
             }
             SizeTest={total / 9}
           />
+          <Styled.CaracterBar />
         </Styled.Row>
 
         <Styled.CaracterTitle>Strengths and weaknesses.</Styled.CaracterTitle>

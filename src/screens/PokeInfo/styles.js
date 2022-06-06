@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {MotiView, MotiImage, useAnimationState} from 'moti';
+import {MotiView} from 'moti';
 
 import {StatusBar} from 'react-native';
 
@@ -34,17 +34,12 @@ const Row = styled.View`
   justify-content: ${({justifyContent}) => justifyContent ?? 'flex-start'};
   margin-bottom: ${({marginBottom}) => marginBottom ?? 0}px;
   left: ${({LeftMove}) => LeftMove ?? 0}px;
+  width: ${({width}) => width ?? '100%'};
 `;
 
 const StyledIcon = styled.Image`
   width: ${({width}) => width ?? 10}px;
   height: ${({height}) => height ?? 20}px;
-`;
-const Tag = styled.View`
-  background-color: rgba(255, 255, 255, 0.4);
-  border-radius: 20px;
-  padding: 5px 10px;
-  margin-left: ${({isFirstChild}) => (isFirstChild ? 0 : 8)}px;
 `;
 
 const HeaderImage = styled.Image`
@@ -117,25 +112,23 @@ const CaracterView = styled.View`
 const CaracterText = styled.Text`
   font-size: 16px;
   text-align: justify;
-  margin-right: ${({marginRight}) => marginRight ?? 0}px;
-  margin-left: ${({marginLeft}) => marginLeft ?? 0}px;
+  width: 30%;
 `;
-const CaracterBar = styled.Image`
-  background-color: black;
-  height: 4px;
+
+const CaracterBar = styled.View`
+  background-color: #565656;
+  height: 3px;
   margin-top: 10px;
+  width: 100%;
 `;
+
 const ColorBar = styled.View`
   background-color: ${({ColorTest}) => ColorTest ?? 'rgba(25,200,25)'};
-  position: absolute;
   margin-top: 10px;
-  margin-left: 154px;
   height: 3px;
-  width: ${({SizeTest}) => SizeTest * 2 ?? 0}px;
+  width: ${({SizeTest}) => SizeTest * 3 ?? 0}px;
+  margin-left: -60px;
 `;
-//width: ${({SizeTest}) => SizeTest}px;
-//width: ${({SizeTest}) => SizeTest * 3 ?? 10}px;
-//background-color: ${({ColorBar}) => ColorBar ?? rgba(0, 0, 0)};
 
 export default {
   Scroll,
@@ -145,7 +138,6 @@ export default {
   HeaderText,
   HeaderView,
   Row,
-  Tag,
   HeaderImage,
   InfoView,
   DescriptionTitle,
