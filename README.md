@@ -1,7 +1,7 @@
 ﻿# Pokerzappts
 # Sobre o Projeto
 
-Este projeto foi realizado utilizando React Native, Styled-Component para a estilização, Moti para imagens, axios para requisições da API  entre outras tecnologias
+Este projeto foi realizado utilizando React Native, Styled-Component para a estilização, axios para requisições da API  entre outras tecnologias
 
 
 # Comandos para execução:
